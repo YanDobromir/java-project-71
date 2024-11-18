@@ -1,5 +1,11 @@
 plugins {
-    id 'java'
+    id 'application'
+
+    id 'se.patrikerdes.use-latest-versions' version '0.2.18'
+
+    id 'com.github.ben-manes.versions' version '0.41.0'
+
+    id 'checkstyle'
 }
 
 group = 'hexlet.code'
@@ -10,10 +16,30 @@ repositories {
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
 test {
     useJUnitPlatform()
 }
+
+application {
+    // Входная точка
+    mainClass = 'hexlet.code.App'
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "hexlet.code.App"
+    }
+}
+
+compileJava {
+    options.release = 17
+}
+
+run {
+    standardInput = System.in
+}
+
