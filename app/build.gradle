@@ -44,16 +44,16 @@ compileJava {
 }
 
 run {
-    jvmArgs += '--enable-preview'
+    jvmArgs += ["--enable-preview", "-Xlint:preview"]
     standardInput = System.in
 }
 
 
 tasks.withType(JavaCompile) {
-    options.compilerArgs += ["-Xlint:preview"]
+    options.compilerArgs += ['--enable-preview','-Xlint:preview']
 }
 
-tasks.withType(JavaExec) {
+tasks.withType(JavaExec).configureEach {
     jvmArgs += "--enable-preview"
 }
 
