@@ -1,21 +1,21 @@
+package hexlet.code;
+
+import java.util.concurrent.Callable;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
 @Command(
     name = "gendiff",
-    mixinStandardHelpOptions = true,  // Включает флаги -h и -V по 
-умолчанию
-    version = "gendiff 1.0",  // Указывает версию приложения
-    description = "Compares two configuration files and shows a 
-difference."  // Описание приложения
-)
-public class App implements Runnable {
+    mixinStandardHelpOptions = true,
+    version = "gendiff 1.0",
+    description = "Compares two configuration files and shows a difference.")
+public class App implements Callable<Integer> {
 
     @Override
-    public void run() {
+    public Integer call() throws Exception {
         // Логика приложения
-        System.out.println("This is where the application logic will 
-go.");
+        System.out.println("This is where the application logic will go.");
+        return 0; // Код успешного завершения
     }
 
     public static void main(String[] args) {
@@ -24,4 +24,3 @@ go.");
         System.exit(exitCode);
     }
 }
-
