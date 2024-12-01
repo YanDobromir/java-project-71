@@ -9,6 +9,7 @@ import picocli.CommandLine.Parameters;
     name = "gendiff",
     mixinStandardHelpOptions = true,
     version = "gendiff 1.0",
+    usageHelpAutoWidth = true,
     description = "Compares two configuration files and shows a difference.")
 
 public class App implements Callable<Integer> {
@@ -16,6 +17,7 @@ public class App implements Callable<Integer> {
     @Option(
         names = {"-f", "--format"},
         description = "output format [default: stylish]",
+        paramLabel = "format",
         defaultValue = "stylish")
         private String format;
 
@@ -35,9 +37,14 @@ public class App implements Callable<Integer> {
     @Override
 
     public Integer call() throws Exception {
-        // Логика приложения
-        System.out.println("This is where the application logic will go.");
-        return 0; // Код успешного завершения
+        try {
+            String diff = Differ.generate(filepath1, filepath2);
+            System.out.println(diff);
+            return 0;
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            return 1; // Код ошибки
+        }
     }
 
     public static void main(String[] args) {
