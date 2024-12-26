@@ -3,6 +3,11 @@ plugins {
     id 'checkstyle'
 }
 
+checkstyle {
+    toolVersion = '10.21.0'
+    configFile = file('/Users/balance/IdeaProjects/java-project-71/app/config/checkstyle/checkstyle.xml')
+}
+
 group = 'hexlet.code'
 version = '1.0-SNAPSHOT'
 
